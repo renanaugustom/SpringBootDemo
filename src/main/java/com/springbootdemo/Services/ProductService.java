@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -16,4 +17,8 @@ public class ProductService {
     public Collection<Product> getAll(){
         return productDao.getAllProducts();
     }
+
+	public Optional<Product> getByName(String name) {
+		return productDao.getByName(name);
+	}
 }

@@ -1,28 +1,38 @@
 package com.springbootdemo.Dao;
 
-import com.springbootdemo.Entity.Product;
-import org.springframework.stereotype.Repository;
-
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
+import java.util.Optional;
+
+import com.springbootdemo.Entity.Product;
+
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProductDao {
-    private static Map<Integer, Product> products;
+    private static ArrayList<Product> products;
 
     static {
-        products = new HashMap<Integer, Product>() {
-            {
-                put(1, new Product(1, "Apple", new BigDecimal(1.3)));
-                put(2, new Product(2, "Banana", new BigDecimal(2.5)));
-                put(3, new Product(3, "Orange", new BigDecimal(3.0)));
-            }
-        };
+        products = new ArrayList<Product>()
+        {{
+            add(new Product(1, "Orange", new BigDecimal(1.3)));
+            add(new Product(2, "Apple", new BigDecimal(2.5)));
+            add(new Product(3, "Banana", new BigDecimal(3.0)));
+        }};
     }
 
     public Collection<Product> getAllProducts() {
-        return products.values();
+        Collections.sort(products, (Product s1, Product s2) ->{
+            return s1.getName().compareToIgnoreCase(s2.getName());
+        });
+
+        return products;
+    }
+
+    public Optional<Product> getByName(String name) {
+        return products.stream().filter(x -> 
+            x.getName().compareToIgnoreCase(name) == 0).findFirst();
     }
 }
