@@ -1,4 +1,4 @@
-package com.springbootdemo.Controllers;
+package com.springbootdemo.Entity;
 
 import java.util.Currency;
 
