@@ -1,14 +1,14 @@
 package com.springbootdemo.Entity;
 
-import java.util.Currency;
+import java.math.BigDecimal;
 
 public class Product {
 
     private int id;
     private String name;
-    private Currency value;
+    private BigDecimal value;
 
-    public Product(int id, String name, Currency value) {
+    public Product(int id, String name, BigDecimal value) {
         this.id = id;
         this.name = name;
         this.value = value;
@@ -30,11 +30,11 @@ public class Product {
         this.name = name;
     }
 
-    public Currency getValue() {
+    public BigDecimal getValue() {
         return value;
     }
 
-    public void setValue(Currency value) {
+    public void setValue(BigDecimal value) {
         this.value = value;
     }
 }
